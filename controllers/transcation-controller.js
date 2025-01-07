@@ -5,9 +5,9 @@ exports.getUserTransactions = async (req, res) => {
   try {
 
     const { userId } = req.params;
-    const { status, type, from, to } = req.query;
+    const { status, type, from, to, page = 1, limit = 10 } = req.query;
     const filter = {userId};
-    
+
     if (status) filter.status = status;
     if (type) filter.type = type;
 
@@ -17,9 +17,25 @@ exports.getUserTransactions = async (req, res) => {
       if (to) filter.transactionDate.$lte = new Date(to);
     }
 
-    const transactions = await Transaction.find(filter);
-    console.log(transactions);
-    res.status(200).json(transactions);
+     // Calculate pagination values
+     const skip = (page - 1) * limit;
+
+     // Fetch transactions with pagination
+     const transactions = await Transaction.find(filter)
+       .skip(skip)
+       .limit(parseInt(limit))
+       .lean();
+ 
+     const totalCount = await Transaction.countDocuments(filter);
+ 
+     res.status(200).json({
+       success: true,
+       page: parseInt(page),
+       limit: parseInt(limit),
+       totalCount,
+       totalPages: Math.ceil(totalCount / limit),
+       data: transactions,
+     });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
