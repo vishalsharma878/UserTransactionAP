@@ -1,0 +1,111 @@
+{
+  "info": {
+    "name": "UserTransactionAPI Testing",
+    "description": "Collection of APIs to test the UserTransactionAPI endpoints.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Get User Details by ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://usertransactionapi.onrender.com/api/users/677cba156087c4b3be5b33e8",
+          "protocol": "https",
+          "host": ["usertransactionapi", "onrender", "com"],
+          "path": ["api", "users", "677cba156087c4b3be5b33e8"]
+        }
+      }
+    },
+    {
+      "name": "Get Transactions (All)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://usertransactionapi.onrender.com/api/transactions",
+          "protocol": "https",
+          "host": ["usertransactionapi", "onrender", "com"],
+          "path": ["api", "transactions"]
+        }
+      }
+    },
+    {
+      "name": "Get Transactions with Filters (Success, Credit)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://usertransactionapi.onrender.com/api/transactions?status=success&type=credit&fromDate=2025-01-01&toDate=2025-01-07",
+          "protocol": "https",
+          "host": ["usertransactionapi", "onrender", "com"],
+          "path": ["api", "transactions"],
+          "query": [
+            { "key": "status", "value": "success" },
+            { "key": "type", "value": "credit" },
+            { "key": "fromDate", "value": "2025-01-01" },
+            { "key": "toDate", "value": "2025-01-07" }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get Transactions with Filters (Pending, Debit)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://usertransactionapi.onrender.com/api/transactions?status=pending&type=debit&fromDate=2025-01-01&toDate=2025-01-07",
+          "protocol": "https",
+          "host": ["usertransactionapi", "onrender", "com"],
+          "path": ["api", "transactions"],
+          "query": [
+            { "key": "status", "value": "pending" },
+            { "key": "type", "value": "debit" },
+            { "key": "fromDate", "value": "2025-01-01" },
+            { "key": "toDate", "value": "2025-01-07" }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get Transactions for a User with Filters (User 1)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://usertransactionapi.onrender.com/api/transactions/user/677cba156087c4b3be5b33eb?status=success&type=credit&fromDate=2025-01-01&toDate=2025-01-07",
+          "protocol": "https",
+          "host": ["usertransactionapi", "onrender", "com"],
+          "path": ["api", "transactions", "user", "677cba156087c4b3be5b33eb"],
+          "query": [
+            { "key": "status", "value": "success" },
+            { "key": "type", "value": "credit" },
+            { "key": "fromDate", "value": "2025-01-01" },
+            { "key": "toDate", "value": "2025-01-07" }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get Transactions for a User with Filters (User 2)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://usertransactionapi.onrender.com/api/transactions/user/677cba156087c4b3be5b33e5?status=failed&type=credit&fromDate=2025-01-01&toDate=2025-01-07",
+          "protocol": "https",
+          "host": ["usertransactionapi", "onrender", "com"],
+          "path": ["api", "transactions", "user", "677cba156087c4b3be5b33e5"],
+          "query": [
+            { "key": "status", "value": "failed" },
+            { "key": "type", "value": "credit" },
+            { "key": "fromDate", "value": "2025-01-01" },
+            { "key": "toDate", "value": "2025-01-07" }
+          ]
+        }
+      }
+    }
+  ]
+}
